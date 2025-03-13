@@ -98,11 +98,7 @@ const resetPassword = async (req, res) => {
   });
 };
 
-// User model (for reference)
-const User = mongoose.model('User', new mongoose.Schema({
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-}));
+
 
 // Define routes for authentication
 app.post('/api/auth/register', register);

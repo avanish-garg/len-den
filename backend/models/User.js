@@ -1,10 +1,12 @@
+// models/User.js
 const mongoose = require('mongoose');
 
-// Define User schema
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
-  kycFilePath: String,  // KYC file path
+  kycFilePath: String,  // Optional: for storing KYC file path
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

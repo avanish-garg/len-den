@@ -3,15 +3,18 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const User = require('../models/User');
 
-// JWT Secret key
-const secretKey = 'your_jwt_secret_key';
+// Load environment variables
+require('dotenv').config();
 
-// Nodemailer transport setup (You can configure it with your email service)
+// JWT Secret key from .env
+const secretKey = process.env.JWT_SECRET;
+
+// Nodemailer transport setup (using environment variables)
 const transporter = nodemailer.createTransport({
-  service: 'gmail',  // You can use your email provider (Gmail, SendGrid, etc.)
+  service: 'gmail',
   auth: {
-    user: 'your-email@gmail.com',  // Your email
-    pass: 'your-email-password',   // Your email password (consider using app password)
+    user: process.env.EMAIL_USER,  // Your email from .env
+    pass: process.env.EMAIL_PASS,  // Your email password (or app password)
   },
 });
 
@@ -30,7 +33,7 @@ const forgotPassword = async (req, res) => {
   const resetLink = `http://localhost:5000/api/auth/resetPassword/${token}`;
 
   const mailOptions = {
-    from: 'your-email@gmail.com',
+    from: process.env.EMAIL_USER,  // From the email in the .env
     to: email,
     subject: 'Password Reset Request',
     text: `Click the following link to reset your password: ${resetLink}`,
