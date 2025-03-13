@@ -5,28 +5,29 @@ module.exports = {
   networks: {
     development: {
       host: "127.0.0.1", // Localhost (Ganache)
-      port: 7545,        // Ganache default port
-      network_id: "*",   
-      gas: 6000000,      
-      gasPrice: 40000000000, // 20 Gwei (in wei)
+      port: 7545, // Ganache default port
+      network_id: "*", // Match any network ID
+      gas: 6000000, // Gas limit
+      gasPrice: 40000000000, // 40 Gwei (in wei)
     },
     amoy: {
-      provider: () => new HDWalletProvider({
-        privateKeys: [process.env.PRIVATE_KEY], // Your wallet's private key
-        providerOrUrl: `https://rpc-amoy.polygon.technology`, // Amoy Testnet RPC URL
-      }),
+      provider: () =>
+        new HDWalletProvider({
+          privateKeys: [process.env.PRIVATE_KEY], // Your wallet's private key
+          providerOrUrl: `https://rpc-amoy.polygon.technology`, // Amoy Testnet RPC URL
+        }),
       network_id: 80002, // Amoy Testnet network ID
-      gas: 6000000,       // Gas limit
-      gasPrice: 40000000000, // Gas price (20 Gwei in wei)
-      confirmations: 2,   // Number of confirmations to wait for deployment
+      gas: 6000000, // Gas limit
+      gasPrice: 40000000000, // Gas price (40 Gwei in wei)
+      confirmations: 2, // Number of confirmations to wait for deployment
       timeoutBlocks: 200, // Timeout for transactions
-      skipDryRun: true,   // Skip dry run before deployment
+      skipDryRun: true, // Skip dry run before deployment
     },
   },
 
   compilers: {
     solc: {
-      version: "0.8.13",  // Solidity version
+      version: "0.8.13", // Solidity version
       settings: {
         optimizer: {
           enabled: true,
