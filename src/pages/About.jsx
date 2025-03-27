@@ -207,28 +207,27 @@ function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                name: "Alex Johnson",
-                role: "Founder & CEO",
-                bio: "With over 10 years in tech and sharing economy startups, Alex founded Aptorent to revolutionize rental access."
+                name: "Avanish Garg",
+                role: "Team Lead",
+                bio: "With over 10 years in tech and sharing economy startups, Avanish founded Aptorent to revolutionize rental access."
               },
               {
-                name: "Mei Zhang",
-                role: "CTO",
-                bio: "Former Senior Developer at major tech companies, Mei leads our technology vision and platform infrastructure."
+                name: "Aastha Kanade",
+                role: "Developer",
+                bio: "Former Senior Developer at major tech companies, Aastha leads our technology vision and platform infrastructure."
               },
               {
-                name: "Sam Rodriguez",
-                role: "Head of Operations",
+                name: "Bharat Doshi",
+                role: "Developer",
                 bio: "Sam brings extensive experience in marketplace operations and customer support management."
               },
               {
-                name: "Taylor Williams",
-                role: "Marketing Director",
+                name: "Devanshi Lakhotia",
+                role: "Developer",
                 bio: "Taylor crafts our brand voice and growth strategies with a background in digital marketing."
               }
             ].map((member, index) => (
               <div key={index} className="bg-emerald-800 bg-opacity-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                <div className="h-48 bg-emerald-700"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{member.name}</h3>
                   <p className="text-emerald-300 font-medium">{member.role}</p>

@@ -20,9 +20,7 @@ export const UserProvider = ({ children }) => {
         verified: false,
         idNumber: '',
         idType: '',
-        idFrontImage: null,
-        idBackImage: null,
-        selfieWithId: null,
+        idDocument: null,
         submissionDate: null,
         verificationDate: null,
         status: 'not_submitted' // not_submitted, pending, verified, rejected
@@ -76,9 +74,7 @@ export const UserProvider = ({ children }) => {
         verified: false,
         idNumber: '',
         idType: '',
-        idFrontImage: null,
-        idBackImage: null,
-        selfieWithId: null,
+        idDocument: null,
         submissionDate: null,
         verificationDate: null,
         status: 'not_submitted'

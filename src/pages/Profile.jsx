@@ -79,6 +79,12 @@ const Profile = () => {
 
   const handleSaveChanges = async () => {
     try {
+      // If KYC is being submitted
+      if (editedUser.kyc?.idType && editedUser.kyc?.idNumber && editedUser.kyc?.idDocument) {
+        editedUser.kyc.status = 'pending';
+        editedUser.kyc.submissionDate = new Date().toISOString();
+      }
+      
       await updateUser(editedUser);
       setIsEditing(false);
     } catch (err) {
@@ -287,7 +293,28 @@ const Profile = () => {
             </div>
             
             {isEditing && (
-              <div className="mt-4 space-y-4">
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-gray-300 mb-2">{t.idType}</label>
+                  <select
+                    name="kycIdType"
+                    value={editedUser.kyc?.idType || ''}
+                    onChange={(e) => setEditedUser(prev => ({
+                      ...prev,
+                      kyc: { ...prev.kyc, idType: e.target.value }
+                    }))}
+                    className="w-full bg-gray-700/30 border border-gray-600 rounded-lg p-4 text-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                  >
+                    <option value="">Select ID Type</option>
+                    <option value="governmentId">{t.governmentId}</option>
+                    <option value="passport">{t.passport}</option>
+                    <option value="drivingLicense">{t.drivingLicense}</option>
+                    <option value="panCard">PAN Card</option>
+                    <option value="aadharCard">Aadhar Card</option>
+                    <option value="voterId">Voter ID</option>
+                  </select>
+                </div>
+
                 <div>
                   <label className="block text-gray-300 mb-2">{t.idNumber}</label>
                   <input
@@ -302,45 +329,63 @@ const Profile = () => {
                     className="w-full bg-gray-700/30 border border-gray-600 rounded-lg p-4 text-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-gray-700/30 border border-gray-600 rounded-lg p-4">
-                    <h4 className="text-gray-300 mb-3">{t.idFrontImage}</h4>
-                    <div className="w-full h-48 flex flex-col items-center justify-center border-2 border-dashed border-gray-500 rounded-lg">
-                      <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                      </svg>
-                      <button className="bg-gray-600 hover:bg-gray-500 text-white rounded-full px-4 py-2 transition-colors duration-300">
-                        {t.uploadImage}
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-700/30 border border-gray-600 rounded-lg p-4">
-                    <h4 className="text-gray-300 mb-3">{t.idBackImage}</h4>
-                    <div className="w-full h-48 flex flex-col items-center justify-center border-2 border-dashed border-gray-500 rounded-lg">
-                      <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                      </svg>
-                      <button className="bg-gray-600 hover:bg-gray-500 text-white rounded-full px-4 py-2 transition-colors duration-300">
-                        {t.uploadImage}
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-700/30 border border-gray-600 rounded-lg p-4">
-                    <h4 className="text-gray-300 mb-3">{t.selfieWithId}</h4>
-                    <div className="w-full h-48 flex flex-col items-center justify-center border-2 border-dashed border-gray-500 rounded-lg">
-                      <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                      </svg>
-                      <button className="bg-gray-600 hover:bg-gray-500 text-white rounded-full px-4 py-2 transition-colors duration-300">
-                        {t.uploadImage}
-                      </button>
-                    </div>
+
+                <div>
+                  <label className="block text-gray-300 mb-2">Upload ID Document (PDF)</label>
+                  <div className="w-full flex flex-col items-center justify-center border-2 border-dashed border-gray-500 rounded-lg p-6">
+                    <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          setEditedUser(prev => ({
+                            ...prev,
+                            kyc: { ...prev.kyc, idDocument: file }
+                          }));
+                        }
+                      }}
+                      className="hidden"
+                      id="idDocument"
+                    />
+                    <label
+                      htmlFor="idDocument"
+                      className="bg-gray-600 hover:bg-gray-500 text-white rounded-full px-4 py-2 transition-colors duration-300 cursor-pointer"
+                    >
+                      Upload PDF
+                    </label>
                   </div>
                 </div>
+
                 <p className="text-sm text-gray-400 text-center">{t.kycNote}</p>
+              </div>
+            )}
+
+            {!isEditing && user.kyc?.status === 'pending' && (
+              <div className="text-center py-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                <p className="text-gray-300">{t.kycPending}</p>
+              </div>
+            )}
+
+            {!isEditing && user.kyc?.status === 'verified' && (
+              <div className="text-center py-4">
+                <svg className="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p className="text-gray-300">{t.kycVerified}</p>
+              </div>
+            )}
+
+            {!isEditing && user.kyc?.status === 'rejected' && (
+              <div className="text-center py-4">
+                <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <p className="text-gray-300">{t.kycRejected}</p>
               </div>
             )}
           </div>
