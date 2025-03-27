@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ["user", "rentee", "admin"], default: "rentee" },
+  role: { type: String, enum: ["lender", "renter", "admin"], default: "renter" },
   address: { type: String, default: "" }, // Add blockchain address field
 }, { timestamps: true });
 
