@@ -10,6 +10,8 @@ module rental::RentalAgreement {
         penalties: u64,
     }
 
+    
+
     // Create a new rental agreement
     public entry fun create_rental(account: &signer, rent_amount: u64, deposit: u64) {
         let addr = signer::address_of(account);
