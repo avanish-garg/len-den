@@ -4,12 +4,12 @@ version = "1.0.0"
 authors = []
 
 [addresses]
+rental = "0x7b52f908faf021082df50916367897968260668f5e2e143f995572179e78f13b"
 
 [dev-addresses]
+rental = "0x7b52f908faf021082df50916367897968260668f5e2e143f995572179e78f13b"
 
 [dependencies.AptosFramework]
 git = "https://github.com/aptos-labs/aptos-framework.git"
 rev = "mainnet"
 subdir = "aptos-framework"
-
-[dev-dependencies]
