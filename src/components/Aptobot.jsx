@@ -84,6 +84,54 @@ const Aptobot = () => {
     if (message.includes('cart') || message.includes('checkout')) {
       return 'You can view your cart and proceed to checkout through our Cart and Checkout pages.';
     }
+    if (message.includes('kyc') || message.includes('verification')) {
+      return 'KYC verification is required for enhanced security and trust. You can complete your verification in the Profile section.';
+    }
+    if (message.includes('wallet') || message.includes('payment')) {
+      return 'We support Petra Wallet for secure payments. You can connect your wallet in the Profile section.';
+    }
+    if (message.includes('delivery') || message.includes('shipping')) {
+      return 'We offer flexible delivery options for all rentals. Delivery details will be provided during checkout.';
+    }
+    if (message.includes('return') || message.includes('refund')) {
+      return 'We have a hassle-free return policy. You can initiate returns through your order history in the Profile section.';
+    }
+    if (message.includes('price') || message.includes('cost')) {
+      return 'Rental prices vary based on the item and duration. You can view detailed pricing on each item\'s listing page.';
+    }
+    if (message.includes('quality') || message.includes('condition')) {
+      return 'All items are thoroughly inspected before listing. We ensure high-quality rentals for our users.';
+    }
+    if (message.includes('support') || message.includes('assistance')) {
+      return 'Our support team is available 24/7. You can reach us through the Contact page or email us at aptorent@gmail.in';
+    }
+    if (message.includes('categories') || message.includes('types')) {
+      return 'We offer a wide range of categories including furniture, electronics, tools, and more. Check our Categories page for the full list.';
+    }
+    if (message.includes('trust') || message.includes('safety')) {
+      return 'We prioritize user safety with verified listings, secure payments, and comprehensive insurance coverage.';
+    }
+    if (message.includes('profile') || message.includes('settings')) {
+      return 'You can manage your profile, settings, and preferences in the Profile section.';
+    }
+    if (message.includes('rating') || message.includes('review')) {
+      return 'We have a robust rating and review system to help you make informed decisions. Check individual listings for user reviews.';
+    }
+    if (message.includes('promo') || message.includes('discount')) {
+      return 'We regularly offer promotions and discounts. Check our homepage or subscribe to our newsletter for updates.';
+    }
+    if (message.includes('insurance') || message.includes('protection')) {
+      return 'All rentals come with insurance coverage for your peace of mind. Details are provided during checkout.';
+    }
+    if (message.includes('duration') || message.includes('period')) {
+      return 'We offer flexible rental periods. You can choose the duration that best suits your needs during checkout.';
+    }
+    if (message.includes('maintenance') || message.includes('repair')) {
+      return 'We provide maintenance support for all rentals. Contact our support team if you need assistance.';
+    }
+    if (message.includes('availability') || message.includes('stock')) {
+      return 'Real-time availability is shown on each listing. You can check specific dates during the booking process.';
+    }
     return 'I\'m here to help! You can ask me about renting items, managing your account, or any other questions about our services.';
   };
 
