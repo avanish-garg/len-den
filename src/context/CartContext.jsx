@@ -16,9 +16,18 @@ export const CartProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [purchaseHistory, setPurchaseHistory] = useState(() => {
+    const savedHistory = localStorage.getItem('purchaseHistory');
+    return savedHistory ? JSON.parse(savedHistory) : [];
+  });
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
+  }, [purchaseHistory]);
 
   const addToCart = (item) => {
     setCartItems(prevItems => {
@@ -58,13 +67,26 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const completePurchase = () => {
+    const purchasedItems = cartItems.map(item => ({
+      ...item,
+      purchased: true,
+      purchaseDate: new Date().toISOString()
+    }));
+
+    setPurchaseHistory(prevHistory => [...prevHistory, ...purchasedItems]);
+    clearCart();
+  };
+
   const value = {
     cartItems,
+    purchaseHistory,
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
-    getCartTotal
+    getCartTotal,
+    completePurchase
   };
 
   return (

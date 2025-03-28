@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
       username: '',
       email: '',
       role: '',
+      walletAddress: '',
       memberSince: new Date().getFullYear().toString(),
       bio: '',
       kyc: {
@@ -68,6 +69,7 @@ export const UserProvider = ({ children }) => {
       username: '',
       email: '',
       role: '',
+      walletAddress: '',
       memberSince: new Date().getFullYear().toString(),
       bio: '',
       kyc: {

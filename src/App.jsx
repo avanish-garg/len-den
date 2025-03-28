@@ -17,6 +17,7 @@ import Profile from './pages/Profile'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import ItemDetail from './pages/ItemDetail'
+import Orders from './pages/Orders'
 import { UserProvider } from './context/UserContext'
 import { ItemProvider } from './context/ItemContext'
 import { LanguageProvider } from './context/LanguageContext'
@@ -49,6 +50,7 @@ export const App = () => {
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/item/:id" element={<ItemDetail />} />
+                  <Route path="/orders" element={<Orders />} />
                 </Routes>
               </div>
             </BrowserRouter>

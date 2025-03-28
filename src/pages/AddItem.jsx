@@ -261,69 +261,21 @@ function AddItem() {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
-      <Navbar fixedTheme={darkTheme} />
-      
-      {/* Options Modal */}
-      {showOptionsModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-gray-800 rounded-xl shadow-lg p-8 max-w-md w-full mx-4 animate-fadeIn border border-gray-700">
-            <div className="text-center mb-6">
-              <div className="mx-auto w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Item Added Successfully!</h3>
-              <p className="text-gray-400">Your item has been added to our listings. What would you like to do next?</p>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Navbar />
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Add New Item</h1>
+          
+          {/* Wallet Address Display */}
+          {user.isLoggedIn && user.walletAddress && (
+            <div className="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Your Wallet Address</h2>
+              <p className="text-gray-600 dark:text-gray-300 font-mono break-all">{user.walletAddress}</p>
             </div>
-            
-            <div className="flex flex-col space-y-3">
-              <button 
-                onClick={handleReturnHome}
-                className="py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors duration-200"
-              >
-                Return to Home Page
-              </button>
-              <button 
-                onClick={handleAddMoreItems}
-                className="py-3 px-6 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors duration-200"
-              >
-                Add More Items
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* Success notification - This is now hidden in favor of the modal */}
-      {success && !showOptionsModal && (
-        <div className="fixed top-20 right-4 z-50 bg-emerald-500 text-white px-6 py-3 rounded-md shadow-lg animate-fade-in">
-          <div className="flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span>Your item was successfully added!</span>
-          </div>
-        </div>
-      )}
-      
-      <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-        {/* Error notification */}
-        {error && (
-          <div className="mb-6 bg-red-900 border-l-4 border-red-500 text-red-100 p-4 rounded">
-            <div className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <span>{error}</span>
-            </div>
-          </div>
-        )}
+          )}
 
-        <h1 className="text-3xl font-bold text-emerald-400 mb-8 text-center">List Your Item for Rent</h1>
-        <div className="bg-gray-800 shadow overflow-hidden rounded-lg border border-gray-700">
-          <form onSubmit={handleSubmit} className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Item name */}
             <div>
               <label htmlFor="itemName" className="block mb-2 text-lg font-medium text-white">
@@ -614,6 +566,50 @@ function AddItem() {
           </form>
         </div>
       </div>
+      
+      {/* Options Modal */}
+      {showOptionsModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+          <div className="bg-gray-800 rounded-xl shadow-lg p-8 max-w-md w-full mx-4 animate-fadeIn border border-gray-700">
+            <div className="text-center mb-6">
+              <div className="mx-auto w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Item Added Successfully!</h3>
+              <p className="text-gray-400">Your item has been added to our listings. What would you like to do next?</p>
+            </div>
+            
+            <div className="flex flex-col space-y-3">
+              <button 
+                onClick={handleReturnHome}
+                className="py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors duration-200"
+              >
+                Return to Home Page
+              </button>
+              <button 
+                onClick={handleAddMoreItems}
+                className="py-3 px-6 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors duration-200"
+              >
+                Add More Items
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Success notification - This is now hidden in favor of the modal */}
+      {success && !showOptionsModal && (
+        <div className="fixed top-20 right-4 z-50 bg-emerald-500 text-white px-6 py-3 rounded-md shadow-lg animate-fade-in">
+          <div className="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Your item was successfully added!</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

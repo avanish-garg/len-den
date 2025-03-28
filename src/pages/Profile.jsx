@@ -171,10 +171,16 @@ const Profile = () => {
                       className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 transform hover:-translate-y-0.5"
                     >
                       {t.editProfile}
-                </button>
+                    </button>
+                    <button 
+                      onClick={() => navigate('/orders')}
+                      className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 transform hover:-translate-y-0.5"
+                    >
+                      Your Orders
+                    </button>
                     <button className="px-6 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-green-500/25 transform hover:-translate-y-0.5">
                       {t.listNewItem}
-                </button>
+                    </button>
                   </>
                 )}
             </div>
