@@ -245,7 +245,7 @@ function Home() {
           }`}
         >
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white">Why Choose Sarthi</h2>
+            <h2 className="text-4xl font-bold text-white">Why Choose AptoRent</h2>
             <p className="mt-4 text-lg text-emerald-200">Simplified rental experience for both renters and owners</p>
           </div>
           
