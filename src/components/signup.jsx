@@ -75,53 +75,54 @@ const Signup = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen">
+    <div className="relative flex items-center justify-center min-h-screen pt-16">
       {/* Background Video */}
       <video
         autoPlay
         loop
         muted
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="fixed top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src={bgVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       {/* Overlay to make content more visible */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
+      <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
 
-      <div className="relative w-full max-w-4xl flex flex-row-reverse bg-white rounded-lg shadow-lg overflow-hidden mx-4 z-20">
+      <div className="relative w-full max-w-3xl flex flex-row-reverse bg-white rounded-lg shadow-lg overflow-hidden mx-4 z-20 my-6">
         
-        {/* Right Side - Illustration (was left side before) */}
+        {/* Right Side - Illustration */}
         <div className="hidden md:block w-1/2 bg-cover bg-center relative">
           <img
             src={signupImage}
             alt="Illustration"
             className="w-full h-full object-cover object-center"
+            style={{ maxHeight: '600px' }}
           />
         </div>
 
-        {/* Left Side - Signup Form (was right side before) */}
-        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
-          <h2 className="text-2xl font-semibold text-gray-900 text-center">Sign Up</h2>
-          <p className="text-gray-500 text-center mb-6">Create your account</p>
+        {/* Left Side - Signup Form */}
+        <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+          <h2 className="text-xl font-semibold text-gray-900 text-center">Sign Up</h2>
+          <p className="text-gray-500 text-center text-sm mb-4">Create your account</p>
            
           {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-4">
+            <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded mb-4">
               <p className="text-red-500 text-sm">{error}</p>
             </div>
           )}
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-3" onSubmit={handleSubmit}>
             {/* Name Input */}
             <div>
-              <label className="text-gray-700">Name</label>
+              <label className="text-gray-700 text-sm">Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400"
+                className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 text-sm"
                 placeholder="Your Name"
                 required
               />
@@ -129,13 +130,13 @@ const Signup = () => {
 
             {/* Username Input */}
             <div>
-              <label className="text-gray-700">Username</label>
+              <label className="text-gray-700 text-sm">Username</label>
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400"
+                className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 text-sm"
                 placeholder="Username"
                 required
               />
@@ -143,13 +144,13 @@ const Signup = () => {
 
             {/* Role Selection */}
             <div>
-              <label className="text-gray-700">Select Role</label>
+              <label className="text-gray-700 text-sm">Select Role</label>
               <div className="relative">
                 <select
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 appearance-none"
+                  className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 appearance-none text-sm"
                   required
                 >
                   <option value="" disabled>Select Role</option>
@@ -167,13 +168,13 @@ const Signup = () => {
 
             {/* Email Input */}
             <div>
-              <label className="text-gray-700">Email</label>
+              <label className="text-gray-700 text-sm">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400"
+                className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 text-sm"
                 placeholder="Email"
                 required
               />
@@ -181,28 +182,28 @@ const Signup = () => {
 
             {/* Password Input */}
             <div>
-              <label className="text-gray-700">Password</label>
+              <label className="text-gray-700 text-sm">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400"
+                  className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 text-sm"
                   placeholder="Password"
                   required
                 />
                 <button 
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-2 text-gray-500 cursor-pointer"
+                  className="absolute right-2 top-1.5 text-gray-500 cursor-pointer"
                 >
                   {showPassword ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                     </svg>
                   ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
@@ -213,17 +214,17 @@ const Signup = () => {
 
             {/* Blockchain Wallet Address Input */}
             <div>
-              <label className="text-gray-700">Wallet Address</label>
+              <label className="text-gray-700 text-sm">Wallet Address</label>
               <input
                 type="text"
                 name="walletAddress"
                 value={formData.walletAddress}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400"
+                className="w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-gray-400 text-sm"
                 placeholder="Enter your blockchain wallet address"
                 required
               />
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 mt-1">
                 Supported networks: Ethereum, Bitcoin, Solana, and others
               </p>
             </div>
@@ -231,14 +232,14 @@ const Signup = () => {
             {/* Signup Button */}
             <button 
               type="submit" 
-              className="w-full bg-blue-500 text-white py-2 rounded-lg text-lg font-semibold hover:bg-blue-600 transition mt-6"
+              className="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition mt-4"
             >
               CREATE
             </button>
           </form>
 
           {/* Login Link */}
-          <p className="text-center text-gray-600 mt-4">
+          <p className="text-center text-gray-600 mt-3 text-sm">
             Already have an account?{" "}
             <button 
               onClick={goToLogin}

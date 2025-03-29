@@ -128,7 +128,7 @@ function About() {
         >
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8">
-              {t.title} <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-transparent bg-clip-text">Len-Den</span>
+              {t.title} <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-transparent bg-clip-text">AptoRent</span>
             </h1>
             <p className="mt-6 text-xl text-gray-100 max-w-3xl mx-auto">
               {t.subtitle}

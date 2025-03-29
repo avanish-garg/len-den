@@ -4,7 +4,6 @@ import { useUser } from "../context/UserContext";
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import LanguageModal from './LanguageModal';
 
 // Color themes matching the Home page
 const themes = [
@@ -32,12 +31,11 @@ const Navbar = ({ fixedTheme }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const t = translations[language].nav;
-  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -96,105 +94,134 @@ const Navbar = ({ fixedTheme }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || fixedTheme ? 'bg-black/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
+      className={`${
+        isScrolled ? "bg-black bg-opacity-90 shadow-lg" : "bg-transparent"
+      } fixed w-full z-50 transition-all duration-300`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center">
               <h1 className="text-2xl font-bold text-white">
-                <span className="text-emerald-500">Apto</span>
-                <span className="text-white">rent</span>
+                <span 
+                  style={{ 
+                    color: currentTheme.primary
+                  }}
+                >
+                  Apto
+                </span>
+                rent
               </h1>
             </Link>
           </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/" 
-              className={`text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors ${
-                location.pathname === '/' ? 'text-emerald-400' : ''
-              }`}
-            >
-              {t.home}
+            <Link to="/" className="text-white hover:text-gray-300 px-3 py-2 text-sm font-medium">
+              Home
             </Link>
-            <Link 
-              to="/categories" 
-              className={`text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors ${
-                location.pathname === '/categories' ? 'text-emerald-400' : ''
-              }`}
-            >
-              {t.listings}
+            <Link to="/categories" className="text-white hover:text-gray-300 px-3 py-2 text-sm font-medium">
+              Listings
             </Link>
-            <Link 
-              to="/about" 
-              className={`text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors ${
-                location.pathname === '/about' ? 'text-emerald-400' : ''
-              }`}
-            >
-              {t.about}
+            <Link to="/about" className="text-white hover:text-gray-300 px-3 py-2 text-sm font-medium">
+              About
             </Link>
-            <Link 
-              to="/contact" 
-              className={`text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors ${
-                location.pathname === '/contact' ? 'text-emerald-400' : ''
-              }`}
-            >
-              {t.contact}
+            <Link to="/contact" className="text-white hover:text-gray-300 px-3 py-2 text-sm font-medium">
+              Contact
             </Link>
           </div>
 
-          {/* Right side buttons */}
+          {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            {user.isLoggedIn && (
+              <Link to="/cart" className="relative text-gray-300 hover:text-white">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </Link>
+            )}
             <button
-              onClick={() => setIsLanguageModalOpen(true)}
-              className="text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors"
+              onClick={connectWallet}
+              className="text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
             >
-              {t.language}
+              {walletAddress 
+                ? `${walletAddress.substring(0,6)}...${walletAddress.substring(walletAddress.length-4)}` 
+                : "Connect Petra Wallet"}
             </button>
             
-            {user ? (
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/profile"
-                  className="text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors"
-                >
-                  {t.profile}
-                </Link>
+            {user.isLoggedIn ? (
+              <>
                 <button
-                  onClick={logout}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
+                  onClick={goToProfile}
+                  className="flex items-center text-white px-3 py-2 text-sm font-medium hover:text-emerald-400 transition-colors duration-200"
+                  title="View Profile"
                 >
-                  {t.logout}
+                  {user.username}
                 </button>
-              </div>
+                <button
+                  onClick={handleLogoutClick}
+                  className="text-white border border-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium"
+                >
+                  Log Out
+                </button>
+              </>
             ) : (
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/login"
-                  className="text-white hover:text-emerald-400 px-3 py-2 text-base font-medium transition-colors"
+              <>
+                <button
+                  onClick={handleLoginClick}
+                  className="text-white border border-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium"
                 >
-                  {t.login}
-                </Link>
-                <Link
-                  to="/signup"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
+                  Log In
+                </button>
+                <button
+                  onClick={handleSignupClick}
+                  className="text-white font-medium px-4 py-2 rounded-lg text-sm"
+                  style={{ 
+                    backgroundColor: currentTheme.primary
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = currentTheme.primaryHover}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = currentTheme.primary}
                 >
-                  {t.signup}
-                </Link>
-              </div>
+                  Sign Up
+                </button>
+              </>
             )}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center space-x-4">
+            {user.isLoggedIn && (
+              <>
+                <Link to="/cart" className="relative text-gray-300 hover:text-white mr-2">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </Link>
+                <button
+                  onClick={goToProfile}
+                  className="text-white text-sm font-medium hover:text-emerald-400 transition-colors duration-200"
+                  title="View Profile"
+                >
+                  {user.username}
+                </button>
+              </>
+            )}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-emerald-400 p-2 rounded-lg transition-colors"
+              onClick={toggleMobileMenu}
+              className="text-white focus:outline-none"
+              style={{ color: "white" }}
+              aria-label="Toggle menu"
             >
               {!isMobileMenuOpen ? (
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -212,103 +239,66 @@ const Navbar = ({ fixedTheme }) => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/95 border-t border-gray-800">
-          <div className="px-4 pt-2 pb-3 space-y-2">
-            <Link
-              to="/"
-              className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors ${
-                location.pathname === '/' ? 'text-emerald-400 bg-emerald-900/50' : 'text-white hover:bg-emerald-900/30'
-              }`}
+        <div className="md:hidden bg-black bg-opacity-95">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link 
+              to="/" 
+              className="text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t.home}
+              Home
             </Link>
-            <Link
-              to="/categories"
-              className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors ${
-                location.pathname === '/categories' ? 'text-emerald-400 bg-emerald-900/50' : 'text-white hover:bg-emerald-900/30'
-              }`}
+            <Link 
+              to="/categories" 
+              className="text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t.listings}
+              Listings
             </Link>
-            <Link
-              to="/about"
-              className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors ${
-                location.pathname === '/about' ? 'text-emerald-400 bg-emerald-900/50' : 'text-white hover:bg-emerald-900/30'
-              }`}
+            <Link 
+              to="/about" 
+              className="text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t.about}
+              About
             </Link>
-            <Link
-              to="/contact"
-              className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors ${
-                location.pathname === '/contact' ? 'text-emerald-400 bg-emerald-900/50' : 'text-white hover:bg-emerald-900/30'
-              }`}
+            <Link 
+              to="/contact" 
+              className="text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t.contact}
+              Contact
             </Link>
-
-            <div className="pt-4 border-t border-gray-800">
-              <button
-                onClick={() => {
-                  setIsLanguageModalOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="block w-full px-3 py-2 text-base font-medium text-white hover:bg-emerald-900/30 rounded-lg transition-colors text-left"
-              >
-                {t.language}
-              </button>
-              
-              {user ? (
-                <>
-                  <Link
-                    to="/profile"
-                    className="block px-3 py-2 text-base font-medium text-white hover:bg-emerald-900/30 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t.profile}
-                  </Link>
-                  <button
-                    onClick={() => {
-                      logout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="block w-full px-3 py-2 text-base font-medium text-white hover:bg-emerald-900/30 rounded-lg transition-colors text-left"
-                  >
-                    {t.logout}
-                  </button>
-                </>
+            
+            {/* Mobile Auth Links */}
+            <div className="border-t border-gray-700 mt-4 pt-4">
+              {user.isLoggedIn ? (
+                <button
+                  onClick={handleLogoutClick}
+                  className="w-full text-left text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
+                >
+                  Log Out
+                </button>
               ) : (
                 <>
-                  <Link
-                    to="/login"
-                    className="block px-3 py-2 text-base font-medium text-white hover:bg-emerald-900/30 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                  <button
+                    onClick={handleLoginClick}
+                    className="w-full text-left text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
                   >
-                    {t.login}
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="block px-3 py-2 text-base font-medium text-white hover:bg-emerald-900/30 rounded-lg transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    Log In
+                  </button>
+                  <button
+                    onClick={handleSignupClick}
+                    className="w-full text-left text-white hover:text-gray-300 block px-3 py-2 text-base font-medium"
                   >
-                    {t.signup}
-                  </Link>
+                    Sign Up
+                  </button>
                 </>
               )}
             </div>
           </div>
         </div>
       )}
-
-      {/* Language Modal */}
-      <LanguageModal
-        isOpen={isLanguageModalOpen}
-        onClose={() => setIsLanguageModalOpen(false)}
-      />
     </nav>
   );
 };
