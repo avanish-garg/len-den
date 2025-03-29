@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Sitemap from "../components/Sitemap";
 import Sarthi from "../components/Sarthi";
 import { useLanguage } from '../context/LanguageContext';
+import { useUser } from '../context/UserContext';
 import { translations } from '../translations';
 import officeparty from "../assets/officeparty.jpg";
 import garba from "../assets/garba.jpg";
@@ -23,6 +24,7 @@ const theme = {
 
 function Home() {
   const { language } = useLanguage();
+  const { user } = useUser();
   const t = translations[language].home;
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
@@ -211,18 +213,22 @@ function Home() {
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link 
-                to="/categories"
-                className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors text-lg font-medium"
-              >
-                {t.browseRentals}
-              </Link>
-              <Link 
-                to="/add-item"
-                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border-2 border-white rounded-xl transition-colors text-lg font-medium"
-              >
-                {t.listItems}
-              </Link>
+              {(!user.isLoggedIn || (user.isLoggedIn && user.role && user.role.owner)) && (
+                <Link 
+                  to="/categories"
+                  className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors text-lg font-medium"
+                >
+                  {t.browseRentals}
+                </Link>
+              )}
+              {(!user.isLoggedIn || (user.isLoggedIn && user.role && user.role.renter)) && (
+                <Link 
+                  to="/add-item"
+                  className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border-2 border-white rounded-xl transition-colors text-lg font-medium"
+                >
+                  {t.listItems}
+                </Link>
+              )}
             </div>
           </div>
         </div>
