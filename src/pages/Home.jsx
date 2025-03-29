@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sitemap from "../components/Sitemap";
-import Aptobot from "../components/Aptobot";
+import Sarthi from "../components/Sarthi";
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import officeparty from "../assets/officeparty.jpg";
@@ -562,8 +562,8 @@ function Home() {
       {/* Sitemap Footer */}
       <Sitemap />
       
-      {/* Aptobot Chat */}
-      <Aptobot />
+      {/* Sarthi Chat */}
+      <Sarthi />
     </div>
   );
 }
