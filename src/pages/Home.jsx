@@ -5,9 +5,10 @@ import Sitemap from "../components/Sitemap";
 import Aptobot from "../components/Aptobot";
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import bgImage1 from "../assets/bg1.jpg";
-import bgImage2 from "../assets/bg2.jpg";
-import bgImage3 from "../assets/bg3.jpg";
+import officeparty from "../assets/officeparty.jpg";
+import garba from "../assets/garba.jpg";
+import hall1 from "../assets/hall1.jpg";
+import acaiaOutdoor from "../assets/Acaia Outdoor.jpg";
 
 // Theme colors - Green theme
 const theme = {
@@ -42,7 +43,7 @@ function Home() {
 
   // Preload background images
   useEffect(() => {
-    const backgrounds = [bgImage1, bgImage2, bgImage3];
+    const backgrounds = [garba,officeparty, hall1, acaiaOutdoor];
     const loadImages = async () => {
       const promises = backgrounds.map((src) => {
         return new Promise((resolve) => {
@@ -66,8 +67,8 @@ function Home() {
     if (!isLoaded) return;
     
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % 3);
-    }, 7000);
+      setActiveIndex((prev) => (prev + 1) % 4);
+    }, 5000);
     
     return () => clearInterval(interval);
   }, [isLoaded]);
@@ -160,26 +161,35 @@ function Home() {
       <section ref={heroRef} className="relative min-h-screen flex items-center">
         {/* Background Slider with Parallax */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          {[bgImage1, bgImage2, bgImage3].map((img, index) => (
+          {[officeparty, garba, hall1, acaiaOutdoor].map((img, index) => (
             <div
               key={index}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-1500 ease-in-out ${
-                activeIndex === index ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 w-full h-full transition-all duration-2000 ease-in-out ${
+                activeIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
               style={{
-                transform: `scale(1.1) translate(${mousePosition.x / 30}px, ${mousePosition.y / 30}px)`,
-                backgroundImage: `url(${img})`,
+                transform: `translate(${mousePosition.x / 35}px, ${mousePosition.y / 35}px)`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${img})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "50% 50%",
+                backgroundRepeat: "no-repeat",
+                filter: "brightness(0.95) contrast(1.1)",
+                height: "100vh",
+                width: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+                transformOrigin: "center",
+                willChange: "transform, opacity"
               }}
             />
           ))}
           
-          {/* Overlay */}
+          {/* Subtle vignette effect */}
           <div 
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)`,
+              background: "radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%)",
+              mixBlendMode: "multiply"
             }}
           />
         </div>
@@ -198,10 +208,6 @@ function Home() {
                 {t.subtitle}
               </span>
             </h1>
-            
-            <p className="mt-6 text-xl text-gray-100 max-w-2xl">
-              {t.search}
-            </p>
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

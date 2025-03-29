@@ -100,22 +100,14 @@ export const translations = {
       signup: "Sign Up"
     },
     home: {
-      welcome: "Welcome to Len-Den",
+      welcome: "Welcome to AptoRent",
       subtitle: "Rent anything, anywhere",
-      search: "Search for items",
       popularCategories: "Popular Categories",
       featuredItems: "Featured Items",
       viewAll: "View All",
       rentNow: "Rent Now",
       perDay: "per day",
       exploreMore: "Explore More",
-      whyChoose: "Why Choose Len-Den",
-      easyDiscovery: "Easy Discovery",
-      easyDiscoveryDesc: "Find the perfect rental items with our powerful search and filtering options.",
-      verifiedListings: "Verified Listings",
-      verifiedListingsDesc: "Every listing is verified for quality and accuracy to ensure a great experience.",
-      competitivePricing: "Competitive Pricing",
-      competitivePricingDesc: "Get the best value with transparent pricing and no hidden fees.",
       browseRentals: "Browse Rentals",
       listItems: "List Your Items"
     },
@@ -292,9 +284,8 @@ export const translations = {
       signup: "Registrarse"
     },
     home: {
-      welcome: "Bienvenido a Len-Den",
+      welcome: "Bienvenido a AptoRent",
       subtitle: "Alquila cualquier cosa, en cualquier lugar",
-      search: "Buscar artículos",
       popularCategories: "Categorías populares",
       featuredItems: "Artículos destacados",
       viewAll: "Ver todo",
@@ -477,9 +468,8 @@ export const translations = {
       signup: "S'inscrire"
     },
     home: {
-      welcome: "Bienvenue à Len-Den",
+      welcome: "Bienvenue à AptoRent",
       subtitle: "Louez tout, n'importe où",
-      search: "Rechercher des articles",
       popularCategories: "Catégories populaires",
       featuredItems: "Articles en vedette",
       viewAll: "Voir tout",
@@ -624,9 +614,8 @@ export const translations = {
       signup: "साइन अप"
     },
     home: {
-      welcome: "लेन-देन मध्ये आपले स्वागत आहे",
+      welcome: "AptoRent मध्ये आपले स्वागत आहे",
       subtitle: "कुठेही, काहीही भाड्याने घ्या",
-      search: "वस्तू शोधा",
       popularCategories: "लोकप्रिय श्रेणी",
       featuredItems: "विशेष वस्तू",
       viewAll: "सर्व पहा",
@@ -765,9 +754,8 @@ export const translations = {
       signup: "பதிவு செய்க"
     },
     home: {
-      welcome: "லெந்-டென்க்கு வரவேற்கிறோம்",
+      welcome: "AptoRent க்கு வரவேற்கிறோம்",
       subtitle: "எல்லியாவது, எதையும் வாடகைக்கு எடுங்கள்",
-      search: "வஸ்துக்களந்நு தேடுங்கள்",
       popularCategories: "பிரபலமான வகைகள்",
       featuredItems: "விஶேஷ வஸ்துக்கள்",
       viewAll: "அனைத்தையும் காண்க",
@@ -906,9 +894,8 @@ export const translations = {
       signup: "ಸಾಯಿನ್ ಅಪ್"
     },
     home: {
-      welcome: "ಲೆನ್-ಡೆನ್‌ಗೆ ಸ್ವಾಗತ",
+      welcome: "AptoRent ಗೆ ಸ್ವಾಗತ",
       subtitle: "ಎಲ್ಲಿಯಾದರೂ, ಏನನ್ನಾದರೂ ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ",
-      search: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
       popularCategories: "ಜನಪ್ರಿಯ ವರ್ಗಗಳು",
       featuredItems: "ವಿಶೇಷ ವಸ್ತುಗಳು",
       viewAll: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
