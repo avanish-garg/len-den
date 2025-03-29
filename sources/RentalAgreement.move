@@ -9,7 +9,6 @@ module rental::RentalAgreement {
         active: bool,
         penalties: u64,
     }
-
     
 
     // Create a new rental agreement
