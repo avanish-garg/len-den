@@ -10,11 +10,17 @@ const LanguageModal = ({ isOpen, onClose }) => {
 
   const languages = [
     { code: 'en', name: 'English' },
+    { code: 'mr', name: 'मराठी' },
+    { code: 'ta', name: 'தமிழ்' },
+    { code: 'kn', name: 'ಕನ್ನಡ' },
     { code: 'es', name: 'Español' },
     { code: 'fr', name: 'Français' }
   ];
 
   const regions = [
+    { code: 'IN-MH', name: 'Maharashtra', currency: 'INR' },
+    { code: 'IN-TN', name: 'Tamil Nadu', currency: 'INR' },
+    { code: 'IN-KA', name: 'Karnataka', currency: 'INR' },
     { code: 'US', name: 'United States', currency: 'USD' },
     { code: 'ES', name: 'España', currency: 'EUR' },
     { code: 'FR', name: 'France', currency: 'EUR' },
