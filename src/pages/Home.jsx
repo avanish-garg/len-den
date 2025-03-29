@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sitemap from "../components/Sitemap";
 import Aptobot from "../components/Aptobot";
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 import bgImage1 from "../assets/bg1.jpg";
 import bgImage2 from "../assets/bg2.jpg";
 import bgImage3 from "../assets/bg3.jpg";
@@ -19,6 +21,8 @@ const theme = {
 };
 
 function Home() {
+  const { language } = useLanguage();
+  const t = translations[language].home;
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -188,34 +192,30 @@ function Home() {
         >
           <div className="text-center md:text-left md:max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              <span className="text-white">Find Your</span>
+              <span className="text-white">{t.welcome}</span>
               <br/>
               <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-transparent bg-clip-text">
-                Perfect Rental
+                {t.subtitle}
               </span>
             </h1>
             
             <p className="mt-6 text-xl text-gray-100 max-w-2xl">
-              Discover thousands of high-quality rental items with instant availability and seamless booking experience.
+              {t.search}
             </p>
-            
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+
+            {/* Action Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link 
                 to="/categories"
-                className="px-8 py-4 rounded-full text-white font-medium text-lg transform hover:scale-105 transition-all duration-300 shadow-lg"
-                style={{
-                  background: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
-                  boxShadow: `0 10px 20px -10px ${theme.primary}`,
-                }}
+                className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors text-lg font-medium"
               >
-                Browse Rentals
+                {t.browseRentals}
               </Link>
-              
               <Link 
                 to="/add-item"
-                className="px-8 py-4 rounded-full font-medium text-lg border-2 text-white border-white bg-transparent hover:bg-white hover:text-emerald-900 transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center"
+                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border-2 border-white rounded-xl transition-colors text-lg font-medium"
               >
-                List Your Items
+                {t.listItems}
               </Link>
             </div>
           </div>

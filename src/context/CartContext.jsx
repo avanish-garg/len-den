@@ -60,7 +60,6 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
-    localStorage.removeItem('cart');
   };
 
   const getCartTotal = () => {
@@ -68,14 +67,42 @@ export const CartProvider = ({ children }) => {
   };
 
   const completePurchase = () => {
-    const purchasedItems = cartItems.map(item => ({
+    // Create a single order with multiple items
+    const orderItems = cartItems.map(item => ({
       ...item,
-      purchased: true,
-      purchaseDate: new Date().toISOString()
+      status: 'active',
+      purchaseDate: new Date().toISOString(),
+      rentalEndDate: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)).toISOString() // 30 days rental
     }));
 
-    setPurchaseHistory(prevHistory => [...prevHistory, ...purchasedItems]);
+    const newOrder = {
+      id: `order-${Date.now()}`,
+      items: orderItems,
+      status: 'active',
+      purchaseDate: new Date().toISOString(),
+      totalAmount: getCartTotal()
+    };
+
+    setPurchaseHistory(prevHistory => [...prevHistory, newOrder]);
     clearCart();
+  };
+
+  const cancelOrder = (orderId) => {
+    setPurchaseHistory(prevHistory => 
+      prevHistory.map(order => 
+        order.id === orderId 
+          ? { 
+              ...order, 
+              status: 'cancelled',
+              cancellationDate: new Date().toISOString(),
+              items: order.items.map(item => ({
+                ...item,
+                status: 'cancelled'
+              }))
+            }
+          : order
+      )
+    );
   };
 
   const value = {
@@ -86,7 +113,8 @@ export const CartProvider = ({ children }) => {
     updateQuantity,
     clearCart,
     getCartTotal,
-    completePurchase
+    completePurchase,
+    cancelOrder
   };
 
   return (

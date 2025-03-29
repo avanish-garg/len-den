@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 import bgImage1 from "../assets/bg1.jpg";
 import { Link } from "react-router-dom";
 
@@ -15,6 +17,8 @@ const theme = {
 };
 
 function About() {
+  const { language } = useLanguage();
+  const t = translations[language].about;
   const [isLoaded, setIsLoaded] = useState(false);
   const [animations, setAnimations] = useState({
     header: false,
@@ -124,10 +128,10 @@ function About() {
         >
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8">
-              About <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-transparent bg-clip-text">Aptorent</span>
+              {t.title} <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-transparent bg-clip-text">Len-Den</span>
             </h1>
             <p className="mt-6 text-xl text-gray-100 max-w-3xl mx-auto">
-              We're reimagining the rental experience - connecting people with quality rentals and enabling owners to share their belongings in a safe, trusted marketplace.
+              {t.subtitle}
             </p>
           </div>
         </div>
@@ -144,13 +148,13 @@ function About() {
           }`}
         >
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold" style={{ color: theme.dark }}>Our Mission</h2>
+            <h2 className="text-4xl font-bold" style={{ color: theme.dark }}>{t.ourMission}</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-green-500 mx-auto mt-4 mb-6 rounded-full"></div>
           </div>
           
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-xl text-gray-700 leading-relaxed">
-              At Aptorent, our mission is to create a sustainable sharing economy by transforming the way people access and utilize items they need temporarily. We believe in reducing waste while providing convenient access to quality rentals, fostering community connections, and enabling people to earn from their underutilized possessions.
+              {t.missionText}
             </p>
             
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
