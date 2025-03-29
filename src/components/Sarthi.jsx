@@ -149,7 +149,7 @@ const Sarthi = () => {
           </svg>
         ) : (
           <img 
-            src="https://www.citypng.com/public/uploads/small/11662225746dfbkpvdrtbalvvgwfvs9vrkfcjmkewoi3xfnfy7vesbktkuqwyvtf31sdh5eprdm1nhkjlu3oyxthgqxnropcfddomwszkjgb1gk.png" 
+            src="/images/robot.svg" 
             alt="Sarthi Bot" 
             className="h-6 w-6"
           />
@@ -164,7 +164,7 @@ const Sarthi = () => {
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-2">
                 <img 
-                  src="https://www.citypng.com/public/uploads/small/11662225746dfbkpvdrtbalvvgwfvs9vrkfcjmkewoi3xfnfy7vesbktkuqwyvtf31sdh5eprdm1nhkjlu3oyxthgqxnropcfddomwszkjgb1gk.png" 
+                  src="/images/robot.svg" 
                   alt="Sarthi Bot" 
                   className="h-5 w-5"
                 />

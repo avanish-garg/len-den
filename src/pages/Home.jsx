@@ -239,7 +239,7 @@ function Home() {
           }`}
         >
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white">Why Choose Aptorent</h2>
+            <h2 className="text-4xl font-bold text-white">Why Choose Sarthi</h2>
             <p className="mt-4 text-lg text-emerald-200">Simplified rental experience for both renters and owners</p>
           </div>
           
@@ -354,7 +354,7 @@ function Home() {
                   role: "Apartment Renter",
                   avatar: "https://randomuser.me/api/portraits/women/44.jpg",
                   rating: 5,
-                  text: "Finding furniture for my new apartment was so easy with Aptorent. The process was smooth from browsing to delivery, and the quality exceeded my expectations!",
+                  text: "Finding furniture for my new apartment was so easy with Sarthi. The process was smooth from browsing to delivery, and the quality exceeded my expectations!",
                   animDelay: 0.1
                 },
                 {
@@ -362,7 +362,7 @@ function Home() {
                   role: "Business Owner",
                   avatar: "https://randomuser.me/api/portraits/men/32.jpg",
                   rating: 5,
-                  text: "As a business owner, I needed to furnish my office quickly. Aptorent saved me thousands compared to buying new, and the quality was excellent. Highly recommend!",
+                  text: "As a business owner, I needed to furnish my office quickly. Sarthi saved me thousands compared to buying new, and the quality was excellent. Highly recommend!",
                   animDelay: 0.2
                 },
                 {
@@ -370,7 +370,7 @@ function Home() {
                   role: "Event Planner",
                   avatar: "https://randomuser.me/api/portraits/women/63.jpg",
                   rating: 5,
-                  text: "I use Aptorent for all my events now. The selection is amazing, and the delivery is always on time. It's transformed how I approach event planning!",
+                  text: "I use Sarthi for all my events now. The selection is amazing, and the delivery is always on time. It's transformed how I approach event planning!",
                   animDelay: 0.3
                 },
                 {
@@ -378,7 +378,7 @@ function Home() {
                   role: "College Student",
                   avatar: "https://randomuser.me/api/portraits/men/75.jpg",
                   rating: 5,
-                  text: "As a student, I couldn't afford to buy all the furniture I needed. Aptorent helped me furnish my dorm room affordably, and returning was super easy!",
+                  text: "As a student, I couldn't afford to buy all the furniture I needed. Sarthi helped me furnish my dorm room affordably, and returning was super easy!",
                   animDelay: 0.1
                 },
                 {
@@ -386,7 +386,7 @@ function Home() {
                   role: "Home Stager",
                   avatar: "https://randomuser.me/api/portraits/women/28.jpg",
                   rating: 5,
-                  text: "Aptorent is a game-changer for my home staging business. I can access high-quality furniture at a fraction of the cost of buying. My clients are always impressed!",
+                  text: "Sarthi is a game-changer for my home staging business. I can access high-quality furniture at a fraction of the cost of buying. My clients are always impressed!",
                   animDelay: 0.2
                 },
                 {
@@ -394,7 +394,7 @@ function Home() {
                   role: "Filmmaker",
                   avatar: "https://randomuser.me/api/portraits/men/45.jpg",
                   rating: 5,
-                  text: "I used Aptorent to find camera equipment for my independent film. The selection was impressive and the rates were perfect for our tight budget.",
+                  text: "I used Sarthi to find camera equipment for my independent film. The selection was impressive and the rates were perfect for our tight budget.",
                   animDelay: 0.3
                 },
                 {
@@ -402,7 +402,7 @@ function Home() {
                   role: "First-time Renter",
                   avatar: "https://randomuser.me/api/portraits/women/90.jpg",
                   rating: 4,
-                  text: "The customer service at Aptorent is exceptional! When I had an issue with my delivery, they resolved it immediately and even offered a discount on my next rental.",
+                  text: "The customer service at Sarthi is exceptional! When I had an issue with my delivery, they resolved it immediately and even offered a discount on my next rental.",
                   animDelay: 0.1
                 },
                 {
@@ -410,7 +410,7 @@ function Home() {
                   role: "Wedding Planner",
                   avatar: "https://randomuser.me/api/portraits/men/36.jpg",
                   rating: 5,
-                  text: "I've planned over 50 weddings using Aptorent's decor and furniture. Their selection helps me create unique experiences for each couple without breaking their budget.",
+                  text: "I've planned over 50 weddings using Sarthi's decor and furniture. Their selection helps me create unique experiences for each couple without breaking their budget.",
                   animDelay: 0.2
                 },
                 {
@@ -418,7 +418,7 @@ function Home() {
                   role: "Interior Designer",
                   avatar: "https://randomuser.me/api/portraits/women/17.jpg",
                   rating: 5,
-                  text: "As an interior designer, I appreciate the high-quality options Aptorent offers. It allows me to showcase different styles to clients before they commit to purchases.",
+                  text: "As an interior designer, I appreciate the high-quality options Sarthi offers. It allows me to showcase different styles to clients before they commit to purchases.",
                   animDelay: 0.3
                 },
                 {
@@ -426,7 +426,7 @@ function Home() {
                   role: "Remote Worker",
                   avatar: "https://randomuser.me/api/portraits/men/29.jpg",
                   rating: 5,
-                  text: "When I started working from home, I needed a proper office setup. Aptorent helped me try different ergonomic chairs and desks before investing in my permanent setup.",
+                  text: "When I started working from home, I needed a proper office setup. Sarthi helped me try different ergonomic chairs and desks before investing in my permanent setup.",
                   animDelay: 0.1
                 },
                 {
@@ -434,7 +434,7 @@ function Home() {
                   role: "Small Business Owner",
                   avatar: "https://randomuser.me/api/portraits/women/38.jpg",
                   rating: 5,
-                  text: "Aptorent helped me furnish my new café without the massive upfront costs. The flexible rental terms were perfect as my business grew and changed.",
+                  text: "Sarthi helped me furnish my new café without the massive upfront costs. The flexible rental terms were perfect as my business grew and changed.",
                   animDelay: 0.2
                 },
                 {
@@ -442,7 +442,7 @@ function Home() {
                   role: "Photographer",
                   avatar: "https://randomuser.me/api/portraits/men/55.jpg",
                   rating: 5,
-                  text: "The photography equipment on Aptorent is top-notch. I've been able to try different lenses and cameras before making expensive purchases. Such a valuable service!",
+                  text: "The photography equipment on Sarthi is top-notch. I've been able to try different lenses and cameras before making expensive purchases. Such a valuable service!",
                   animDelay: 0.3
                 },
                 {
@@ -450,7 +450,7 @@ function Home() {
                   role: "Home Renovator",
                   avatar: "https://randomuser.me/api/portraits/women/79.jpg",
                   rating: 5,
-                  text: "During our home renovation, we used Aptorent for temporary furniture. The process was smooth, and it was much more comfortable than living with just the bare essentials.",
+                  text: "During our home renovation, we used Sarthi for temporary furniture. The process was smooth, and it was much more comfortable than living with just the bare essentials.",
                   animDelay: 0.1
                 }
               ].map((review, index) => (
@@ -535,7 +535,7 @@ function Home() {
           <div className="bg-gradient-to-r from-emerald-800/40 to-green-800/40 backdrop-blur-lg rounded-3xl p-10 md:p-16 text-center shadow-xl">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to find your perfect rental?</h2>
             <p className="text-lg text-emerald-200 mb-10 max-w-3xl mx-auto">
-              Join thousands of happy renters who found their perfect items on Aptorent. Start browsing today!
+              Join thousands of happy renters who found their perfect items on Sarthi. Start browsing today!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
