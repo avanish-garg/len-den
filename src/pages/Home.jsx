@@ -70,7 +70,7 @@ function Home() {
     
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % 4);
-    }, 5000);
+    }, 2500);
     
     return () => clearInterval(interval);
   }, [isLoaded]);
