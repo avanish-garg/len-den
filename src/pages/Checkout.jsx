@@ -6,7 +6,7 @@ import { translations } from '../translations';
 import Navbar from '../components/Navbar';
 
 const Checkout = () => {
-  const { cartItems, getCartTotal, clearCart } = useCart();
+  const { cartItems, getCartTotal, clearCart, completePurchase } = useCart();
   const { language } = useLanguage();
   const t = translations[language].cart;
   const navigate = useNavigate();
@@ -50,6 +50,7 @@ const Checkout = () => {
     setTimeout(() => {
       setIsProcessing(false);
       setPaymentComplete(true);
+      completePurchase();
       clearCart();
       
       // Redirect to home after successful payment

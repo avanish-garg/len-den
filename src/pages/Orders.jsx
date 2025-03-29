@@ -9,7 +9,7 @@ function Orders() {
   const navigate = useNavigate();
   const { user } = useUser();
   const { items, updateItem } = useItems();
-  const { cartItems } = useCart();
+  const { purchaseHistory } = useCart();
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -17,9 +17,6 @@ function Orders() {
   const rentedItems = items.filter(item => 
     item.status === 'rented' && item.rentedBy === user.id
   );
-
-  // Get items from cart that have been purchased
-  const purchasedItems = cartItems.filter(item => item.purchased);
 
   const handleCancelRental = (item) => {
     setSelectedItem(item);
@@ -83,11 +80,11 @@ function Orders() {
           {/* Purchase History Section */}
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Purchase History</h2>
-            {purchasedItems.length === 0 ? (
+            {purchaseHistory.length === 0 ? (
               <p className="text-gray-600 dark:text-gray-400">No purchase history.</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {purchasedItems.map((item) => (
+                {purchaseHistory.map((item) => (
                   <div key={item.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
                     <img
                       src={item.photos[0]}
