@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import FrontNavbar from "../components/FrontNavbar";
 import Sitemap from "../components/Sitemap";
 import Sarthi from "../components/Sarthi";
 import { useLanguage } from '../context/LanguageContext';
@@ -156,8 +156,8 @@ function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Navbar with custom theme */}
-      <Navbar fixedTheme={theme} />
+      {/* Use FrontNavbar instead of Navbar */}
+      <FrontNavbar />
       
       {/* Hero Section with Parallax */}
       <section ref={heroRef} className="relative min-h-screen flex items-center">
@@ -213,22 +213,18 @@ function Home() {
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              {(!user.isLoggedIn || (user.isLoggedIn && user.role && user.role.owner)) && (
-                <Link 
-                  to="/categories"
-                  className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors text-lg font-medium"
-                >
-                  {t.browseRentals}
-                </Link>
-              )}
-              {(!user.isLoggedIn || (user.isLoggedIn && user.role && user.role.renter)) && (
-                <Link 
-                  to="/add-item"
-                  className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border-2 border-white rounded-xl transition-colors text-lg font-medium"
-                >
-                  {t.listItems}
-                </Link>
-              )}
+              <Link 
+                to="/categories"
+                className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-colors text-lg font-medium"
+              >
+                {t.browseRentals}
+              </Link>
+              <Link 
+                to="/add-item"
+                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border-2 border-white rounded-xl transition-colors text-lg font-medium"
+              >
+                {t.listItems}
+              </Link>
             </div>
           </div>
         </div>

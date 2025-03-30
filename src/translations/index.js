@@ -181,6 +181,28 @@ export const translations = {
       deliveryOptions: "Delivery Options",
       itemDetails: "Item Details",
       additionalInfo: "Additional Information"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   },
   es: {
@@ -365,6 +387,28 @@ export const translations = {
       deliveryOptions: "Opciones de entrega",
       itemDetails: "Detalles del artículo",
       additionalInfo: "Información adicional"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   },
   fr: {
@@ -549,6 +593,28 @@ export const translations = {
       deliveryOptions: "Options de livraison",
       itemDetails: "Détails de l'article",
       additionalInfo: "Informations supplémentaires"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   },
   mr: {
@@ -689,6 +755,28 @@ export const translations = {
       deliveryOptions: "डिलिव्हरी पर्याय",
       itemDetails: "वस्तूचे तपशील",
       additionalInfo: "होटोचोटो माहिती"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   },
   ta: {
@@ -754,25 +842,25 @@ export const translations = {
       signup: "பதிவு செய்க"
     },
     home: {
-      welcome: "AptoRent க்கு வரவேற்கிறோம்",
-      subtitle: "எல்லியாவது, எதையும் வாடகைக்கு எடுங்கள்",
-      popularCategories: "பிரபலமான வகைகள்",
+      welcome: "AptoRent க்கு ஸ்வா஗த",
+      subtitle: "எல்லியாவது, ஏநாவது வாடகைக்கு எடுங்கள்",
+      popularCategories: "ஜநப்பிய வகைகள்",
       featuredItems: "விஶேஷ வஸ்துக்கள்",
       viewAll: "அனைத்தையும் காண்க",
       rentNow: "இப்போது வாடகைக்கு எடுங்கள்",
       perDay: "நாள் ஒன்றுக்கு",
       exploreMore: "மேலும் ஏக்கப்புருங்கள்",
-      browseRentals: "வாடகை பொருட்களை பார்க்க",
-      listItems: "உங்கள் பொருட்களை பட்டியலிடுங்கள்"
+      browseRentals: "வாடகை வஸ்துக்களை பார்க்க",
+      listItems: "நிம்ம வஸ்துக்களை பட்டி மா஡ி"
     },
     listings: {
-      title: "உபலவிருவ வஸ்துக்கள்",
-      filter: "பில்டர்",
+      title: "ல஭்யவிருவ வஸ்துக்கள்",
+      filter: "஫ில்டர்",
       sortBy: "வரிசைப்படுத்து",
       price: "விலை",
       category: "வகை",
       location: "இடம்",
-      availability: "உபலவிருவ தன்மை",
+      availability: "ல஭்யதெ",
       search: "தேடு",
       noResults: "யாவும் வஸ்துக்கள் காணப்படவில்லை",
       rentNow: "இப்போது வாடகைக்கு எடுங்கள்",
@@ -788,7 +876,7 @@ export const translations = {
       toolsEquipment: "கருவிகள் & உபகரணங்கள்",
       other: "இதரெ",
       viewAll: "அனைத்தையும் காண்க",
-      itemsAvailable: "வஸ்துக்கள் உபலவிருவ"
+      itemsAvailable: "வஸ்துக்கள் ல஭்யவிவெ"
     },
     about: {
       title: "எங்களைப் பற்றி",
@@ -805,30 +893,52 @@ export const translations = {
       title: "தொடர்பு கொள்ளுங்கள்",
       name: "பெயர்",
       email: "மின்னஞ்சல்",
-      message: "செய்தி",
-      send: "செய்தி அனுப்பு",
+      message: "ஸஂ஦ேஶ",
+      send: "ஸஂ஦ேஶ அனுப்பு",
       address: "முகவரி",
       phone: "தொலைபேசி",
-      emailUs: "எங்களுக்கு மின்னஞ்சல் அனுப்புங்கள்",
+      emailUs: "நமகெ இமேல் மா஡ி",
       getInTouch: "தொடர்பில் இருங்கள்",
-      messageSent: "செய்தி யஶஸ்வியாக அனுப்பப்பட்டது!",
-      description: "எங்கள் வாடகை சேவைகள் பற்றி நீங்கள் எந்தவொரு கேள்விக்கும் நாங்கள் இங்கே உள்ளோம்."
+      messageSent: "ஸஂ஦ேஶ யஶஸ்வியாக அனுப்பப்பட்டது!",
+      description: "எங்கள் வாடகை சேவாகள் பற்றி நிம்ம யாவும் ப்ரஶ்நெகளிகெ நாவு இல்லிவெ."
     },
     addItem: {
-      title: "உங்கள் வஸ்துக்களை பட்டியலிடுங்கள்",
+      title: "உங்கள் வஸ்துக்களை பட்டி மா஡ி",
       itemName: "வஸ்துக்களின் பெயர்",
       description: "விவரண்",
       category: "வகை",
-      price: "நாள் ஒன்றுக்கு விலை",
+      price: "ப்ரதி ஦ிநக்கு விலை",
       photos: "புகைப்படங்கள்",
       location: "இடம்",
-      availability: "உபலவிருவ தன்மை",
-      submit: "பட்டியலை சமர்ப்பிக்கவும்",
+      availability: "ல஭்யதெ",
+      submit: "பட்டியலை ஸமர்ப்பிக்கவும்",
       uploadPhotos: "புகைப்படங்களின் பதிவேற்றவும்",
-      successMessage: "வஸ்துக்கள் யஶஸ்வியாக பட்டியலிடப்பட்டது!",
+      successMessage: "வஸ்துக்கள் யஶஸ்வியாக பட்டி மா஡லாகியது!",
       deliveryOptions: "டெலிவரி ஆய்கெடுக்கள்",
       itemDetails: "வஸ்துக்களின் விவரங்கள்",
-      additionalInfo: "கூடுதல் தகவல்"
+      additionalInfo: "கூடுதல் மாஹிதி"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   },
   kn: {
@@ -969,6 +1079,28 @@ export const translations = {
       deliveryOptions: "ಡೆಲಿವರಿ ಆಯ್ಕೆಗಳು",
       itemDetails: "ವಸ್ತುವಿನ ವಿವರಗಳು",
       additionalInfo: "ಹೆಚ್ಚುವರಿ ಮಾಹಿತಿ"
+    },
+    education: {
+      title: "Education Center",
+      subtitle: "Learn how to make the most of your rental experience",
+      renterTips: "Being a good renter",
+      lenderTips: "Being a responsible lender",
+      respectProperty: "Respect the Property",
+      respectPropertyDesc: "Handle items with care. Avoid misuse or damage.",
+      timelyReturns: "Timely Returns",
+      timelyReturnsDesc: "Return items on time. Inform lenders of delays.",
+      stayTransparent: "Stay Transparent",
+      stayTransparentDesc: "Discuss concerns promptly. Confirm terms upfront.",
+      reportDamages: "Report Damages",
+      reportDamagesDesc: "Be honest about damages. Offer to cover repairs if needed.",
+      maintainCleanliness: "Maintain Cleanliness",
+      maintainCleanlinessDesc: "Return items in good condition. Ensure proper hygiene.",
+      adhereToTerms: "Adhere to Terms",
+      adhereToTermsDesc: "Follow guidelines. Respect all rental terms & policies.",
+      honorProviders: "Honor Providers",
+      honorProvidersDesc: "Be punctual and cooperative. Value their time and effort.",
+      accurateInfo: "Accurate Information",
+      accurateInfoDesc: "Clearly state your service needs. Ensure transparent communication."
     }
   }
 }; 

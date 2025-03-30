@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import loginImage from "../assets/loginmain.jpg";
+import loginImage from "../assets/login bg (1).png";
 import bgVideo from "../assets/bgvideo1.mp4";
 import { useUser } from "../context/UserContext";
 
@@ -194,15 +194,15 @@ const Login = () => {
       {/* Overlay to make content more visible */}
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
 
-      <div className="relative w-full max-w-3xl flex bg-white rounded-lg shadow-lg overflow-hidden mx-4 z-20 my-6">
+      <div className="relative w-full max-w-3xl flex bg-white rounded-2xl shadow-lg overflow-hidden mx-4 z-20 my-6">
         
         {/* Left Side - Illustration */}
         <div className="hidden md:block w-1/2 bg-cover bg-center relative">
           <img
             src={loginImage}
             alt="Illustration"
-            className="w-full h-full object-cover object-right"
-            style={{ maxHeight: '600px' }}
+            className="w-full h-full object-contain"
+            style={{ maxHeight: '100%' }}
           />
         </div>
 

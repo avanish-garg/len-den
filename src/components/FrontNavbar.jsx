@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useCart } from '../context/CartContext';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../translations';
 
-const Navbar = () => {
+const FrontNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [walletAddress, setWalletAddress] = useState(null);
-  const [mounted, setMounted] = useState(false);
   const { user, logout } = useUser();
   const { cartItems } = useCart();
-  const { language } = useLanguage();
   const navigate = useNavigate();
-  const location = useLocation();
-  const t = translations[language].nav;
   
   // Theme colors - Emerald/Green
   const theme = {
@@ -39,6 +33,7 @@ const Navbar = () => {
   }, []);
 
   // Add animation class when component mounts
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     // Slight delay for better entrance effect
     const timer = setTimeout(() => {
@@ -46,20 +41,14 @@ const Navbar = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleSignupClick = () => {
-    navigate("/signup");
-  };
-
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
-
+  
+  // Navigate functions
+  const handleSignupClick = () => navigate("/signup");
+  const handleLoginClick = () => navigate("/login");
   const handleLogoutClick = () => {
     logout();
     navigate("/");
   };
-
   const goToProfile = () => navigate("/profile");
 
   // Function to connect to Petra Wallet
@@ -78,15 +67,12 @@ const Navbar = () => {
 
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  // Get the current path to highlight active link
-  const currentPath = location.pathname;
-
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled 
           ? "bg-black/90 backdrop-blur-md py-2 shadow-lg" 
-          : "bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900/90 py-4"
+          : "bg-gradient-to-b from-black/70 to-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,16 +107,13 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-white/90 hover:text-white px-3 py-2 text-sm font-medium relative group transform transition-all duration-700 
-                  ${currentPath === item.path ? 'text-emerald-400' : 'text-white/90'}
-                  ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
-                `}
+                className={`text-white/90 hover:text-white px-3 py-2 text-sm font-medium relative group transform transition-all duration-700 ${
+                  mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
                 style={{ transitionDelay: mounted ? `${item.delay}ms` : '0ms' }}
               >
                 <span className="relative z-10">{item.name}</span>
-                <span className={`absolute bottom-0 left-0 h-0.5 bg-emerald-400 transition-all duration-300 
-                  ${currentPath === item.path ? 'w-full' : 'w-0 group-hover:w-full'}`}
-                ></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
           </div>
@@ -224,4 +207,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default FrontNavbar; 
