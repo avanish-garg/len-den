@@ -48,13 +48,13 @@ cd aptorent
 
 2. Install backend dependencies:
 ```bash
-cd backend/
+cd backend
 npm install
 ```
 
 3. Install frontend dependencies:
 ```bash
-cd ../../frontend/
+cd ../../frontend
 npm install
 ```
 
@@ -97,13 +97,13 @@ PINATA_JWT=your_pinata_jwt
 
 1. Start the backend server:
 ```bash
-cd backend/len-den
+cd backend
 npm start
 ```
 
 2. Start the frontend development server:
 ```bash
-cd frontend/len-den
+cd frontend
 npm run dev
 ```
 
