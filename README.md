@@ -1,119 +1,157 @@
+# Aptorent - Blockchain-Based Rental Platform
 
-# **Blockchain-Based Peer-to-Peer Rental Marketplace**
+Aptorent is a decentralized rental platform built on the Aptos blockchain that enables users to rent and lend items securely using smart contracts.
 
-## **Project Overview**
-This project is a **blockchain-based rental marketplace** where users can **rent physical goods and services** using blockchain technology to ensure secure, transparent, and efficient transactions. We leverage **smart contracts** to handle rental agreements, payments, security deposits, and penalties.
+## Features
 
-## **Key Features**
+- 🔐 Secure authentication with JWT
+- 💰 Blockchain-based payments and deposits
+- 📝 Smart contract-based rental agreements
+- 📧 Email verification and OTP system
+- 🖼️ Image upload for rental items
+- 👥 Role-based access (Lender/Renter)
+- 🛡️ Rate limiting and security measures
+- 📱 Responsive frontend design
 
-### 1. **Secure Smart Contract-Based Transactions**
-- Users can create rental agreements using **smart contracts** that automatically execute based on the rental terms (payment, penalties, refunds).
-  
-### 2. **Escrow System for Deposits**
-- Security deposits are held in escrow until the item is returned and verified, ensuring fairness and preventing fraud.
+## Tech Stack
 
-### 3. **OTP-Based Rental Verification**
-- **One-Time Passwords (OTP)** are used for verifying the pickup and return of rental items, ensuring that the item exchange process is secured.
+### Backend
+- Node.js with Express
+- MongoDB for database
+- JWT for authentication
+- Aptos blockchain integration
+- Winston for logging
+- Multer for file uploads
+- Nodemailer for email services
 
-### 4. **Multi-Payment Options (Fiat & Crypto)**
-- Users can choose between **fiat payments (UPI/Stripe)** or **crypto payments (Aptos)** for their rentals.
-- **Crypto payments** are processed via **Aptos blockchain**, while **fiat payments** are facilitated through **Stripe** or **UPI**.
+### Frontend
+- React.js
+- Tailwind CSS
+- Axios for API calls
+- React Router for navigation
+- Context API for state management
 
-### 5. **Gamification and Reward System**
-- Users can earn **reward points** for completing rentals, returning items on time, and completing educational tasks.
-- **Community challenges** encourage users to interact with the platform and complete tasks for additional rewards.
+## Prerequisites
 
-### 6. **Educational Content (Future Scope)**
-- Future plans include adding **educational content** on topics like **blockchain technology**, **sustainability**, and **responsible renting**.
+- Node.js (v18 or higher)
+- MongoDB
+- Aptos wallet
+- npm or yarn
 
-## **Technical Stack**
+## Installation
 
-- **Frontend**: React.js / Next.js, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **Blockchain Layer**: **Aptos** (Smart Contracts on Aptos)
-- **Database**: MongoDB
-- **Payment Gateway**: Stripe (Fiat Payments), MetaMask (Crypto Payments)
-- **OTP Verification**: Twilio, Firebase OTP
-- **Storage**: Pinata (for storing educational content and other assets)
-- **Wallet Integration**: Petra Wallet (for Aptos blockchain interaction)
-
-## **Setup Instructions**
-
-### 1. **Clone the repository**
-
+1. Clone the repository:
 ```bash
-git clone https://github.com/your-repository-url.git
-cd your-project-directory
+git clone https://github.com/yourusername/aptorent.git
+cd aptorent
 ```
 
-### 2. **Install Dependencies**
-
-Run the following commands to install the required dependencies:
-
-For **frontend**:
-
+2. Install backend dependencies:
 ```bash
-cd frontend
+cd backend/len-den
 npm install
 ```
 
-For **backend**:
-
+3. Install frontend dependencies:
 ```bash
-cd backend
+cd ../../frontend/len-den
 npm install
 ```
 
-### 3. **Configure the Blockchain Environment**
+4. Create a `.env` file in the backend directory with the following variables:
+```env
+# Server Configuration
+PORT=5000
+NODE_ENV=development
 
-- Set up your **Aptos wallet** (Petra wallet) and configure it to interact with the **Aptos testnet**.
-- Deploy **smart contracts** on **Aptos** by following the instructions for **Aptos Move**.
+# MongoDB Configuration
+MONGO_URI=your_mongodb_uri
 
-### 4. **Start the Development Servers**
+# JWT Configuration
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
 
-For **frontend**:
+# Frontend URL
+FRONTEND_URL=http://localhost:5173
 
+# Blockchain Configuration
+APTOS_NODE_URL=https://fullnode.testnet.aptoslabs.com
+OWNER_PRIVATE_KEY=your_private_key
+CONTRACT_ADDRESS=your_contract_address
+ADMIN_WALLET_ADDRESS=your_admin_wallet
+
+# Email Configuration
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email
+EMAIL_PASS=your_email_password
+ADMIN_EMAIL=your_admin_email
+
+# Pinata Configuration
+PINATA_API_KEY=your_pinata_api_key
+PINATA_SECRET_API_KEY=your_pinata_secret_key
+PINATA_JWT=your_pinata_jwt
+```
+
+## Running the Application
+
+1. Start the backend server:
 ```bash
-cd frontend
+cd backend/len-den
 npm start
 ```
 
-For **backend**:
-
+2. Start the frontend development server:
 ```bash
-cd backend
-npm start
+cd frontend/len-den
+npm run dev
 ```
 
-### 5. **Test the Platform**
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000
 
-You can test the platform locally by interacting with the **frontend** and **backend**. Ensure that the smart contract is working correctly with **Aptos** and that payments (both fiat and crypto) are processed correctly.
+## API Endpoints
 
-## **Blockchain Smart Contract Logic**
+### Authentication
+- POST `/api/auth/register` - Register a new user
+- POST `/api/auth/login` - Login user
+- POST `/api/auth/forgot-password` - Request password reset
+- POST `/api/auth/reset-password` - Reset password
 
-The **smart contracts** are built using **Aptos Move** and handle:
-- **Rental Agreement Creation**: Creates a contract that specifies terms like rental amount, deposit, and due date.
-- **Escrow System**: The deposit is locked in escrow until the rental item is returned.
-- **Refunds and Penalties**: Based on the condition of the item (e.g., late return or damage), penalties are applied, and refunds are calculated accordingly.
+### Rentals
+- POST `/api/rentals/create-listing` - Create a new rental listing
+- POST `/api/rentals/book` - Book a rental
+- POST `/api/rentals/complete` - Complete a rental
+- POST `/api/rentals/cancel` - Cancel a rental
+- POST `/api/rentals/addPenalty` - Add penalty to a rental
 
-## **Future Enhancements**
+## Security Features
 
-1. **NFT-Based Ownership and Rental Rights**: Use **NFTs** to represent ownership of rental items and manage rental rights.
-2. **Insurance System**: Implement insurance for rental items, where users can purchase and claim insurance for damage.
-3. **EduChain Integration**: We plan to integrate **EduChain’s Learn-to-Earn** mechanism for rewarding users with points for completing educational tasks related to blockchain and sustainability.
-4. **Advanced Gamification**: Further enhance the platform's gamification aspect with leaderboards, badges, and achievements for users.
+- Rate limiting on API endpoints
+- JWT-based authentication
+- Input validation
+- CORS protection
+- Helmet security headers
+- Password hashing with bcrypt
+- Email verification
+- OTP-based rental completion
 
-## **Contributing**
+## Contributing
 
-Feel free to fork this repository, submit issues, and contribute to the project. We welcome contributions from the community!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### **How to Contribute**:
-1. Fork the repo.
-2. Create a new branch.
-3. Make your changes.
-4. Create a pull request.
+## License
 
-## **License**
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
+## Acknowledgments
 
+- Aptos blockchain team
+- MongoDB Atlas
+- Pinata IPFS
+- All contributors and maintainers
