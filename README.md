@@ -48,13 +48,13 @@ cd aptorent
 
 2. Install backend dependencies:
 ```bash
-cd backend/len-den
+cd backend/
 npm install
 ```
 
 3. Install frontend dependencies:
 ```bash
-cd ../../frontend/len-den
+cd ../../frontend/
 npm install
 ```
 
