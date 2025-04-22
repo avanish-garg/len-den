@@ -11,6 +11,11 @@ const rentalSchema = new mongoose.Schema({
       message: props => `${props.value} is not a valid Aptos address!`
     }
   },
+  tokenId: {
+    type: String,
+    required: [true, "Token ID is required"],
+    unique: true
+  },
   name: {
     type: String,
     required: [true, "Name is required"],

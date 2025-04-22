@@ -84,7 +84,17 @@ export const translations = {
       pay: "Pay",
       paymentSuccessful: "Payment Successful!",
       thankYou: "Thank you for your order. Your transaction has been completed successfully.",
-      redirecting: "Redirecting to home page..."
+      redirecting: "Redirecting to home page...",
+      walletConnection: "Wallet Connection",
+      connectWallet: "Connect Wallet",
+      connecting: "Connecting...",
+      connected: "Connected",
+      otpVerification: "OTP Verification",
+      enterOTP: "Enter OTP",
+      enterOTPPlaceholder: "Enter the OTP sent to your email",
+      processing: "Processing...",
+      completePayment: "Complete Payment",
+      totalAmount: "Total Amount"
     },
     nav: {
       home: "Home",

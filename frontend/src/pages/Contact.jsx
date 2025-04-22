@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import FrontNavbar from "../components/FrontNavbar";
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import contactImage from "../assets/contact.jpg";

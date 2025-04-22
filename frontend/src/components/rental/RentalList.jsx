@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { rentalService } from '../../services/rentalService';
 
 const RentalList = () => {
   const [rentals, setRentals] = useState([]);
@@ -14,17 +15,7 @@ const RentalList = () => {
 
   const fetchRentals = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/rentals', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch rentals');
-      }
-
-      const data = await response.json();
+      const data = await rentalService.getAllRentals();
       setRentals(data.rentals);
     } catch (err) {
       setError(err.message);
@@ -54,7 +45,7 @@ const RentalList = () => {
         {rentals.map((rental) => (
           <div key={rental._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={`http://localhost:5000${rental.imageUrl}`}
+              src={`http://localhost:5000${rental.image}`}
               alt={rental.name}
               className="w-full h-48 object-cover"
             />
@@ -62,9 +53,9 @@ const RentalList = () => {
               <h2 className="text-xl font-semibold text-gray-800 mb-2">{rental.name}</h2>
               <p className="text-gray-600 mb-4">{rental.description}</p>
               <div className="flex justify-between items-center">
-                <span className="text-emerald-500 font-semibold">${rental.rentAmount}/day</span>
+                <span className="text-emerald-500 font-semibold">₹{rental.rentAmount}/day</span>
                 <Link
-                  to={`/rentals/${rental._id}`}
+                  to={`/rentals/${rental.tokenId}`}
                   className="text-emerald-500 hover:text-emerald-600"
                 >
                   View Details

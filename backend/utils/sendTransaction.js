@@ -24,8 +24,7 @@ const sendTransaction = async (functionName, args) => {
           arguments: [
             args[0], // renter address
             args[1], // owner address
-            args[2], // amount
-            args[3]  // otp
+            args[2]  // amount
           ]
         };
         break;
@@ -71,8 +70,7 @@ const sendTransaction = async (functionName, args) => {
             args[0], // rentalId
             args[1], // renterAddress
             args[2], // rentAmount
-            args[3], // deposit
-            args[4]  // otp
+            args[3]  // deposit
           ]
         };
         break;

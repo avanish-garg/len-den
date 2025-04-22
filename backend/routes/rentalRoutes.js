@@ -20,6 +20,9 @@ const upload = multer({ storage: storage });
 // Get all rentals
 router.get("/", authenticateUser, rentalController.getAllRentals);
 
+// Get rental by ID
+router.get("/:id", authenticateUser, rentalController.getRentalById);
+
 // Rental routes
 router.post("/create-listing", authenticateUser, upload.single("image"), rentalController.createListing);
 router.post("/book", authenticateUser, rentalController.bookRental);

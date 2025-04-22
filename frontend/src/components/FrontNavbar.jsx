@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { ShoppingCart, Wallet } from 'lucide-react';
 
 const FrontNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -127,8 +128,27 @@ const FrontNavbar = () => {
             ))}
           </div>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons, Cart, and Wallet */}
           <div className="flex items-center space-x-4">
+            {/* Cart Icon */}
+            <Link to="/cart" className="relative text-white/90 hover:text-white">
+              <ShoppingCart className="w-6 h-6" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Wallet Connection */}
+            <button
+              onClick={connectWallet}
+              className="flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
+              <Wallet className="w-4 h-4" />
+              <span>{walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Wallet'}</span>
+            </button>
+
             {isAuthenticated ? (
               <>
                 <button

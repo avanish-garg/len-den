@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import FrontNavbar from "../components/FrontNavbar";
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import bgImage1 from "../assets/bg1.jpg";
@@ -96,7 +96,7 @@ function About() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Navbar with custom theme */}
-      <Navbar fixedTheme={theme} />
+      <FrontNavbar fixedTheme={theme} />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-20">

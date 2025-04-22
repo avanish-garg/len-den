@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import Navbar from "../components/Navbar";
+import FrontNavbar from "../components/FrontNavbar";
 import { useItems } from '../context/ItemContext';
 import { useUser } from '../context/UserContext';
 import { useCart } from '../context/CartContext';
@@ -132,7 +132,7 @@ const Categories = () => {
   // Handle adding item to cart
   const handleAddToCart = (item) => {
     addToCart(item);
-    setAddedToCart(item.id);
+    setAddedToCart(item._id);
     
     // Clear notification after 2 seconds
     setTimeout(() => {
@@ -142,7 +142,7 @@ const Categories = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Navbar fixedTheme={darkTheme} />
+      <FrontNavbar fixedTheme={darkTheme} />
       
       {/* Category Header */}
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 py-16">

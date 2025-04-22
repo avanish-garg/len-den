@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { authService } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(null);
 
@@ -7,16 +8,18 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is logged in on component mount
+    let isMounted = true;
+
     const checkAuth = async () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
           // First try to get user from localStorage
           const savedUser = localStorage.getItem('user');
-          if (savedUser) {
+          if (savedUser && isMounted) {
             const parsedUser = JSON.parse(savedUser);
             setUser(parsedUser);
             setIsAuthenticated(true);
@@ -24,32 +27,40 @@ export const AuthProvider = ({ children }) => {
           
           // Then verify with backend
           const userData = await authService.getCurrentUser();
-          if (userData) {
+          if (userData && isMounted) {
             setUser(userData);
             setIsAuthenticated(true);
-          } else {
+          } else if (isMounted) {
             // If no user data from backend, clear everything
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             setUser(null);
             setIsAuthenticated(false);
           }
-        } else {
+        } else if (isMounted) {
           setUser(null);
           setIsAuthenticated(false);
         }
       } catch (error) {
         console.error('Error checking auth:', error);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setUser(null);
-        setIsAuthenticated(false);
+        if (isMounted) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setUser(null);
+          setIsAuthenticated(false);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     checkAuth();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const login = async (email, password) => {
@@ -82,10 +93,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    authService.logout();
-    setUser(null);
-    setIsAuthenticated(false);
+  const logout = async () => {
+    try {
+      // Clear all user data
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      setUser(null);
+      setIsAuthenticated(false);
+      
+      // Navigate to home page
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Still clear data even if there's an error
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      setUser(null);
+      setIsAuthenticated(false);
+      navigate('/');
+    }
   };
 
   const updateProfile = async (userData) => {
@@ -103,11 +129,11 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     loading,
+    isAuthenticated,
     login,
     register,
     logout,
-    updateProfile,
-    isAuthenticated
+    updateProfile
   };
 
   return (

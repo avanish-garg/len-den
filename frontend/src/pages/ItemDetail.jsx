@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useItems } from '../context/ItemContext';
 import { useCart } from '../context/CartContext';
-import Navbar from '../components/Navbar';
+import FrontNavbar from "../components/FrontNavbar";
 
 // Dark theme colors (same as other pages)
 const darkTheme = {
@@ -58,7 +58,7 @@ const ItemDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900">
-        <Navbar fixedTheme={darkTheme} />
+        <FrontNavbar fixedTheme={darkTheme} />
         <div className="container mx-auto px-4 py-16 flex justify-center items-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500"></div>
         </div>
@@ -69,7 +69,7 @@ const ItemDetail = () => {
   if (error || !item) {
     return (
       <div className="min-h-screen bg-gray-900">
-        <Navbar fixedTheme={darkTheme} />
+        <FrontNavbar fixedTheme={darkTheme} />
         <div className="container mx-auto px-4 py-16">
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold text-red-500 mb-4">Error</h2>
@@ -88,7 +88,7 @@ const ItemDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Navbar fixedTheme={darkTheme} />
+      <FrontNavbar fixedTheme={darkTheme} />
       <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
           {/* Breadcrumb */}

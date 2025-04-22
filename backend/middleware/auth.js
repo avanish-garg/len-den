@@ -62,14 +62,6 @@ exports.authenticateUser = async (req, res, next) => {
       }
     }
 
-    // Check if email is verified
-    if (!user.isEmailVerified) {
-      return res.status(403).json({
-        success: false,
-        message: "Please verify your email before accessing this resource."
-      });
-    }
-
     // Attach user to request
     req.user = user;
     next();

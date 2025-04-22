@@ -28,18 +28,51 @@ export const rentalService = {
 
   // Cart operations
   addToCart: async (rentalId) => {
-    const response = await api.post('/cart/add', { rentalId });
-    return response.data;
+    try {
+      const response = await api.post('/cart/add', { rentalId });
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 400) {
+        throw new Error(error.response.data.msg || 'Item already in cart');
+      }
+      throw error;
+    }
   },
 
   removeFromCart: async (rentalId) => {
-    const response = await api.delete(`/cart/remove/${rentalId}`);
-    return response.data;
+    try {
+      const response = await api.delete(`/cart/remove/${rentalId}`);
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 404) {
+        throw new Error('Item not found in cart');
+      }
+      throw error;
+    }
   },
 
   getCart: async () => {
-    const response = await api.get('/cart');
-    return response.data;
+    try {
+      const response = await api.get('/cart');
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 404) {
+        return { items: [] };
+      }
+      throw error;
+    }
+  },
+
+  clearCart: async () => {
+    try {
+      const response = await api.delete('/cart/clear');
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 404) {
+        throw new Error('Cart not found');
+      }
+      throw error;
+    }
   },
 
   // Payment operations

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import Navbar from '../components/Navbar';
+import FrontNavbar from "../components/FrontNavbar";
 
 const Checkout = () => {
   const { cartItems, getCartTotal, clearCart, processCheckout, loading, error } = useCart();
@@ -19,7 +19,6 @@ const Checkout = () => {
   const [paymentComplete, setPaymentComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [showDetails, setShowDetails] = useState(false);
-  const [otp, setOtp] = useState('');
   
   // Format price to INR
   const formatPrice = (price) => {
@@ -41,17 +40,24 @@ const Checkout = () => {
     setIsConnecting(true);
     
     try {
-      if (window.petra) {
-        const response = await window.petra.connect();
-        setWalletAddress(response.address);
-        setIsConnected(true);
-        setCurrentStep(2);
-      } else {
-        throw new Error('Petra wallet not found');
+      // Check if Petra wallet is available
+      if (!window.petra) {
+        throw new Error('Petra wallet not found. Please install Petra wallet extension.');
       }
+
+      // Request connection using the new wallet standard
+      const response = await window.petra.connect();
+      
+      // Get the connected account address
+      const account = await window.petra.account();
+      
+      // Set the wallet address and connection state
+      setWalletAddress(account.address);
+      setIsConnected(true);
+      setCurrentStep(2);
     } catch (error) {
       console.error('Error connecting wallet:', error);
-      alert('Failed to connect wallet');
+      alert(error.message || 'Failed to connect wallet');
     } finally {
       setIsConnecting(false);
     }
@@ -64,15 +70,45 @@ const Checkout = () => {
       return;
     }
 
-    if (!otp) {
-      alert('Please enter the OTP sent to your email');
-      return;
-    }
-
     setIsProcessing(true);
     
     try {
+      if (!window.petra) {
+        throw new Error('Petra wallet not found');
+      }
+
+      // Get the current account
+      const account = await window.petra.account();
+      
+      // Verify the connected account matches the one we have
+      if (account.address !== walletAddress) {
+        throw new Error('Connected wallet address does not match');
+      }
+
+      // Calculate total amount in APT tokens
+      const totalInINR = getCartTotal();
+      const totalInAPT = totalInINR * 0.05; // Convert INR to APT (mock conversion)
+
+      // Prepare transaction payload according to Petra wallet format
+      const transaction = {
+        function: "0x1::coin::transfer",
+        type_arguments: ["0x1::aptos_coin::AptosCoin"],
+        arguments: [
+          "0x7b52f908faf021082df50916367897968260668f5e2e143f995572179e78f13b", // Your wallet address
+          totalInAPT.toString()
+        ],
+        sender: walletAddress,
+        max_gas_amount: "2000",
+        gas_unit_price: "100",
+        expiration_timestamp_secs: (Math.floor(Date.now() / 1000) + 600).toString() // 10 minutes from now
+      };
+
+      // Sign and submit transaction
+      const response = await window.petra.signAndSubmitTransaction(transaction);
+      
+      // Process the checkout in our backend
       await processCheckout();
+      
       setPaymentComplete(true);
       clearCart();
       
@@ -97,7 +133,7 @@ const Checkout = () => {
   if (paymentComplete) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-emerald-950 to-gray-900">
-        <Navbar />
+        <FrontNavbar />
         <div className="pt-16 text-white">
           <div className="max-w-lg mx-auto px-4 py-12 text-center">
             <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/10">
@@ -123,7 +159,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-emerald-950 to-gray-900">
-      <Navbar />
+      <FrontNavbar />
       <div className="pt-16 text-white">
         <div className="max-w-4xl mx-auto px-4 py-12">
           <h1 className="text-3xl font-bold mb-8">{t.checkout}</h1>
@@ -136,13 +172,13 @@ const Checkout = () => {
                 <div>
                   <h3 className="font-medium">{item.name}</h3>
                   <p className="text-gray-400">
-                    {item.quantity} x {formatPrice(item.rentAmount)}/day
+                    {item.quantity} x {formatPrice(item.price || item.rentAmount || 0)}/day
                   </p>
                   <p className="text-gray-400">
-                    Security Deposit: {formatPrice(item.deposit)}
+                    Security Deposit: {formatPrice(item.deposit || 0)}
                   </p>
                   <p className="text-gray-400">
-                    Total: {formatPrice(item.totalAmount)}
+                    Total: {formatPrice(((item.price || item.rentAmount || 0) + (item.deposit || 0)) * item.quantity)}
                   </p>
                 </div>
               </div>
@@ -182,32 +218,13 @@ const Checkout = () => {
             </div>
           </div>
 
-          {/* OTP Verification */}
-          <div className="bg-white/5 backdrop-blur-xl rounded-xl p-6 mb-6 border border-white/10">
-            <h2 className="text-xl font-semibold mb-4">{t.otpVerification}</h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  {t.enterOTP}
-                </label>
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white"
-                  placeholder={t.enterOTPPlaceholder}
-                />
-              </div>
-            </div>
-          </div>
-
           {/* Payment Button */}
           <div className="flex justify-end">
             <button
               onClick={handlePayment}
-              disabled={isProcessing || !isConnected || !otp}
+              disabled={isProcessing || !isConnected}
               className={`px-8 py-3 rounded-lg font-semibold ${
-                isProcessing || !isConnected || !otp
+                isProcessing || !isConnected
                   ? 'bg-gray-600 cursor-not-allowed'
                   : 'bg-emerald-500 hover:bg-emerald-600'
               }`}

@@ -37,6 +37,30 @@ exports.getAllRentals = async (req, res) => {
   }
 };
 
+// Get rental by ID
+exports.getRentalById = async (req, res) => {
+  try {
+    const rental = await Rental.findOne({ tokenId: req.params.id });
+    if (!rental) {
+      return res.status(404).json({
+        success: false,
+        message: "Rental not found"
+      });
+    }
+    res.status(200).json({
+      success: true,
+      rental
+    });
+  } catch (error) {
+    console.error("Error fetching rental:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching rental",
+      error: error.message
+    });
+  }
+};
+
 // Create new rental listing
 exports.createListing = async (req, res) => {
   try {
@@ -122,7 +146,14 @@ exports.bookRental = async (req, res) => {
     const { rentalId } = req.body;
     const renterAddress = req.user.address; // Get from authenticated user
 
-    const rental = await Rental.findById(rentalId);
+    if (!renterAddress) {
+      return res.status(400).json({
+        success: false,
+        message: "User wallet address not found"
+      });
+    }
+
+    const rental = await Rental.findOne({ tokenId: rentalId });
     if (!rental) {
       return res.status(404).json({
         success: false,
@@ -138,54 +169,57 @@ exports.bookRental = async (req, res) => {
       });
     }
 
-    // Generate and send OTP
-    const otp = generateOTP();
-    await sendOTP(req.user.email, otp);
-
     // Calculate total amount (rent + deposit)
     const totalAmount = rental.rentAmount + rental.deposit;
 
-    // Process payment from renter's wallet to owner's wallet
-    const paymentResponse = await sendTransaction("process_payment", [
-      renterAddress,
-      rental.owner,
-      totalAmount.toString(),
-      otp
-    ]);
+    try {
+      // Process payment from renter's wallet to owner's wallet
+      const paymentResponse = await sendTransaction("process_payment", [
+        renterAddress,
+        rental.owner,
+        totalAmount.toString()
+      ]);
 
-    // Create rental agreement on blockchain
-    const agreementResponse = await sendTransaction("create_rental_agreement", [
-      rentalId,
-      renterAddress,
-      rental.rentAmount.toString(),
-      rental.deposit.toString(),
-      otp
-    ]);
+      // Create rental agreement on blockchain
+      const agreementResponse = await sendTransaction("create_rental_agreement", [
+        rentalId,
+        renterAddress,
+        rental.rentAmount.toString(),
+        rental.deposit.toString()
+      ]);
 
-    // Update rental in database
-    rental.availableQuantity -= 1;
-    rental.rentals.push({
-      renter: renterAddress,
-      startDate: new Date(),
-      paymentTxHash: paymentResponse.txHash,
-      agreementTxHash: agreementResponse.txHash
-    });
-    await rental.save();
-
-    res.status(200).json({
-      success: true,
-      message: "Rental booked successfully",
-      data: {
-        rental,
+      // Update rental in database
+      rental.availableQuantity -= 1;
+      rental.rentals.push({
+        renter: renterAddress,
+        startDate: new Date(),
         paymentTxHash: paymentResponse.txHash,
         agreementTxHash: agreementResponse.txHash
-      }
-    });
+      });
+      await rental.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Rental booked successfully",
+        data: {
+          rental,
+          paymentTxHash: paymentResponse.txHash,
+          agreementTxHash: agreementResponse.txHash
+        }
+      });
+    } catch (txnError) {
+      console.error("Transaction error:", txnError);
+      return res.status(500).json({
+        success: false,
+        message: "Transaction failed",
+        error: txnError.message
+      });
+    }
   } catch (error) {
     console.error("Error booking rental:", error);
     res.status(500).json({
       success: false,
-      message: "Error booking rental",
+      message: error.message || "Error booking rental",
       error: error.message
     });
   }
